@@ -10,13 +10,16 @@ CXXFLAGS=$(OPT) $(STD)
 SRCS=bag.cxx bagtest.cxx
 OBJS=$(SRCS:.cxx=.o)
 
-all: bag
+all: bag test
 
 bag:	$(OBJS)
 	$(CXX) -o $@ $(CXXFLAGS) $+
 
+test: testgen.cxx
+	$(CXX) -o $@ $(CXXFLAGS) $+
+
 clean:
-	/bin/rm bag $(OBJS)
+	/bin/rm bag test $(OBJS)
 	/bin/rm -rf $(ALL:=.dSYM)
 
 depend: $(SRCS)
