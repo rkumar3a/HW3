@@ -28,7 +28,7 @@ int main(void) {
         cout << "P " << i << endl;
     }
     cout << "D" << endl;
-    for (int i = 0; i < 981; i++) {
+    for (int i = 0; i < 1001; i++) {
         cout << "O" << endl;
     }
     cout << "D" << endl;
