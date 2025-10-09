@@ -16,6 +16,8 @@ namespace csen79 {
     Bag &Bag::operator=(const Bag &rhs) {
         std::cout << "assign" << std::endl;
         memcpy(this->data, rhs.data, DATASIZE);
+        this->first = rhs.first;
+        this->count = rhs.count;
         return *this;
     }
 
@@ -54,13 +56,14 @@ namespace csen79 {
     Bag::Data Bag::deQ() {
         if (count == 0)
             throw std::out_of_range(std::string("queue underflow"));
-        Data value = data[head];
-        head = (head + 1) % DATASIZE;
+        Data value = data[first];
+        first = (first + 1) % DATASIZE;
         count -= 1;
         return value;
-    };    void Bag::print() const {
+    };
+    void Bag::print() const {
         for (int i = 0; i < count; i++) {
-            std::cout << data[(head + i) % DATASIZE] << " ";
+            std::cout << data[(first + i) % DATASIZE] << " ";
         }
         std::cout << std::endl;
     };
