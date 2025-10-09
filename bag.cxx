@@ -58,9 +58,8 @@ namespace csen79 {
             throw "The Queue is Full. DeQ Items to Add More.";
         }
 
-        //Set data at the rear which is defined to allow flexible queue insertion structure
-        this->setData(rear, element);
-        rear = (rear+1)%DATASIZE;
+        //Set data at the end
+        this->setData((first+count)%DATASIZE, element);
 
         //Increment the count for every add
         count++;

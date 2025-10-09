@@ -10,7 +10,7 @@ class Bag {
     static constexpr size_t DATASIZE = 1000;    // array size
 public:
     using Data = int;   // create an alias for the data
-    Bag(): data{0}, first{0}, count{0}, rear{0} {}
+    Bag(): data{0}, first{0}, count{0} {}
 
     // rule of 5
     ~Bag() = default;
@@ -30,7 +30,6 @@ private:
     // data storage
     int first;
     int count;
-    int rear;
     Data data[DATASIZE];
 };
 
