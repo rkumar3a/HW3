@@ -14,29 +14,25 @@ namespace csen79 {
 
     // assignment
     Bag &Bag::operator=(const Bag &rhs) {
-        std::cout << "assign" << std::endl;
-        memcpy(this->data, rhs.data, DATASIZE);
-        this->first = rhs.first;
-        this->count = rhs.count;
+        memcpy(data, rhs.data, DATASIZE);
+        first = rhs.first;
+        count = rhs.count;
         return *this;
     }
 
     // move constructor
     Bag::Bag(Bag &&rhs) {
-        std::cout << "move constructor; calling assignment" << std::endl;
-        this->operator=(rhs);
+        operator=(rhs);
     }    
 
     // copy constructor
     Bag::Bag(const Bag &rhs) {
-        std::cout << "copy; calling assignment" << std::endl;
-        this->operator=(rhs);
+        operator=(rhs);
     }    
 
     // move
     Bag &Bag::operator=(Bag &&rhs) {
-        std::cout << "move; calling assign" << std::endl;
-        return this->operator=(rhs);
+        return operator=(rhs);
     }
 
 
@@ -55,11 +51,11 @@ namespace csen79 {
     void Bag::enQ(const Data &element) {
         //Check if adding doesn't surpass limits
         if (count >= DATASIZE){
-            throw "The Queue is Full. DeQ Items to Add More.";
+            throw std::out_of_range("The Queue is Full. DeQ Items to Add More.");
         }
 
         //Set data at the end
-        this->setData((first+count)%DATASIZE, element);
+        setData((first+count)%DATASIZE, element);
 
         //Increment the count for every add
         count++;
