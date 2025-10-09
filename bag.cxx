@@ -52,7 +52,19 @@ namespace csen79 {
             throw std::out_of_range(std::string("index out of range"));
         data[i] = (Data) d;
     }
-    void Bag::enQ(const Data &) {};
+    void Bag::enQ(const Data &element) {
+        //Check if adding doesn't surpass limits
+        if (count >= DATASIZE){
+            throw "The Queue is Full. DeQ Items to Add More.";
+        }
+
+        //Set data at the rear which is defined to allow flexible queue insertion structure
+        this->setData(rear, element);
+        rear = (rear+1)%DATASIZE;
+
+        //Increment the count for every add
+        count++;
+    };
     Bag::Data Bag::deQ() {
         if (count == 0)
             throw std::out_of_range(std::string("queue underflow"));
