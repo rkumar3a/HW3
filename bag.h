@@ -1,5 +1,9 @@
 /*
- * Sin-Yaw Wang <swang24@scu.edu>
+ * Itay Volk <ivolk@scu.edu>,
+ * David Chousal Cantu <dchousal@scu.edu>,
+ * Ding-Shiuan Yang <dyang2@scu.edu>,
+ * Rushil Kumar <rkumar3@scu.edu>,
+ * Alexander Anokhin <aanokhin@scu.edu>
  * recipe for containers using C-style array
  */
 #ifndef BAG_H
@@ -20,8 +24,6 @@ public:
     Bag &operator=(Bag &&rhs);
 
     // access functions
-    const Data &getData(const int) const;
-    void setData(const int, const Data &);
     void enQ(const Data &);
     Data deQ();
     void print() const;

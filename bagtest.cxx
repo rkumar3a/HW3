@@ -1,5 +1,9 @@
 /*
- * Sin-Yaw Wang <swang24@scu.edu>
+ * Itay Volk <ivolk@scu.edu>,
+ * David Chousal Cantu <dchousal@scu.edu>,
+ * Ding-Shiuan Yang <dyang2@scu.edu>,
+ * Rushil Kumar <rkumar3@scu.edu>,
+ * Alexander Anokhin <aanokhin@scu.edu>
  * Test program
  */
 #include <iostream>

@@ -1,5 +1,9 @@
 /*
- * Sin-Yaw Wang <swang24@scu.edu>
+ * Itay Volk <ivolk@scu.edu>,
+ * David Chousal Cantu <dchousal@scu.edu>,
+ * Ding-Shiuan Yang <dyang2@scu.edu>,
+ * Rushil Kumar <rkumar3@scu.edu>,
+ * Alexander Anokhin <aanokhin@scu.edu>
  * recipe for containers using C-style array
  */
 #include <iostream>
@@ -36,18 +40,7 @@ namespace csen79 {
     }
 
 
-    // simple asssess functions
-    // replace them with appropriate ones for assignments
-    const Bag::Data &Bag::getData(const int i) const {
-        if (i < 0 || i >= DATASIZE)
-            throw std::out_of_range(std::string("index out of range"));
-        return data[i];
-    };
-    void Bag::setData(const int i, const Data &d) {
-        if (i < 0 || i >= DATASIZE)
-            throw std::out_of_range(std::string("index out of range"));
-        data[i] = (Data) d;
-    }
+    //Add data to end of Q
     void Bag::enQ(const Data &element) {
         //Check if adding doesn't surpass limits
         if (count >= DATASIZE){
@@ -55,19 +48,24 @@ namespace csen79 {
         }
 
         //Set data at the end
-        setData((first+count)%DATASIZE, element);
+        data[(first+count)%DATASIZE] = element;
 
         //Increment the count for every add
         count++;
     };
+    //Remove data from end of Q
     Bag::Data Bag::deQ() {
         if (count == 0)
             throw std::out_of_range(std::string("queue underflow"));
         Data value = data[first];
-        first = (first + 1) % DATASIZE;
-        count -= 1;
+        first--;
+        if (first < 0) {
+            first += DATASIZE;
+        }
+        count--;
         return value;
     };
+    //Prints the data to cout
     void Bag::print() const {
         for (int i = 0; i < count; i++) {
             std::cout << data[(first + i) % DATASIZE] << " ";
