@@ -33,10 +33,24 @@ int main(void) {
                 continue;
             }
             bag.enQ(data);
+            cout << "Enqueued data: " << data << endl;
         }
             break;
-        case POP:
-        case PRINT:
+        case POP: {
+            int data;
+            try {
+                data = bag.deQ();
+                cout << "Dequeued data: " << data << endl;
+            } catch (const out_of_range &e) {
+                cerr << e.what() << endl;
+                continue;
+            }
+        }
+            break;
+        case PRINT: {
+            cout << "Printing bag:" << endl;
+            bag.print();
+        }
             break;
         case QUIT:
             quit = true;
