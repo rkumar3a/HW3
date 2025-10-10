@@ -15,7 +15,7 @@ namespace csen79 {
     // assignment
     Bag &Bag::operator=(const Bag &rhs) {
         std::cout << "assign" << std::endl;
-        memcpy(this->data, rhs.data, DATASIZE);
+        memcpy(this->data, rhs.data, DATASIZE*sizeof(Data));
         this->first = rhs.first;
         this->count = rhs.count;
         return *this;
@@ -40,17 +40,17 @@ namespace csen79 {
     }
 
 
-    // simple asssess functions
+    // simple access functions
     // replace them with appropriate ones for assignments
     const Bag::Data &Bag::getData(const int i) const {
-        if (i < 0 || i >= DATASIZE)
+        if (i < 0 || i >= count)
             throw std::out_of_range(std::string("index out of range"));
-        return data[i];
+        return data[(first+i)%DATASIZE];
     };
     void Bag::setData(const int i, const Data &d) {
-        if (i < 0 || i >= DATASIZE)
+        if (i < 0 || i >= count)
             throw std::out_of_range(std::string("index out of range"));
-        data[i] = (Data) d;
+        data[(first+i)%DATASIZE] = d;
     }
     void Bag::enQ(const Data &element) {
         //Check if adding doesn't surpass limits

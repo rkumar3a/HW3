@@ -32,7 +32,9 @@ int main(void) {
         }
             break;
         case POP:
+            break;
         case PRINT:
+            bag.print();
             break;
         case QUIT:
             quit = true;
