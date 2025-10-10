@@ -58,10 +58,7 @@ namespace csen79 {
         if (count == 0)
             throw std::out_of_range(std::string("queue underflow"));
         Data value = data[first];
-        first--;
-        if (first < 0) {
-            first += DATASIZE;
-        }
+        first = (first+1)%DATASIZE;
         count--;
         return value;
     };

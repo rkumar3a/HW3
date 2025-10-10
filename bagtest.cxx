@@ -21,10 +21,10 @@ int main(void) {
     Bag bag;
     string line;
     bool quit = false;
+    int data;
     while (!quit && std::getline(cin,line)) {
         switch (line[0]) {
-        case PUSH: {
-            int data;
+        case PUSH:
             try {
                 stringstream ss(line.substr(1));
                 ss >> data;
@@ -32,12 +32,15 @@ int main(void) {
                 cerr << "Data out of range" << endl;
                 continue;
             }
-            bag.enQ(data);
-            cout << "Enqueued data: " << data << endl;
-        }
+            try {
+                bag.enQ(data);
+                cout << "Enqueued data: " << data << endl;
+            } catch (const out_of_range &e) {
+                cerr << e.what() << endl;
+                continue;
+            }
             break;
-        case POP: {
-            int data;
+        case POP:
             try {
                 data = bag.deQ();
                 cout << "Dequeued data: " << data << endl;
@@ -45,12 +48,10 @@ int main(void) {
                 cerr << e.what() << endl;
                 continue;
             }
-        }
             break;
-        case PRINT: {
+        case PRINT:
             cout << "Printing bag:" << endl;
             bag.print();
-        }
             break;
         case QUIT:
             quit = true;
