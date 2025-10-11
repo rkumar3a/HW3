@@ -11,14 +11,14 @@
 #include <string>
 #include <sstream>
 #include <stdexcept>
-#include "stack.h"
+#include "set.h"
 
 using namespace std;
 using namespace csen79;
 enum Command { PUSH = 'P', POP = 'O', PRINT = 'D', QUIT = 'Q' };
 
 int main(void) {
-    Stack stack;
+    Set set;
     string line;
     bool quit = false;
     int data;
@@ -33,7 +33,7 @@ int main(void) {
                 continue;
             }
             try {
-                stack.enQ(data);
+                set.enQ(data);
                 cout << "Enqueued data: " << data << endl;
             } catch (const out_of_range &e) {
                 cerr << e.what() << endl;
@@ -42,7 +42,7 @@ int main(void) {
             break;
         case POP:
             try {
-                data = stack.deQ();
+                data = set.deQ();
                 cout << "Dequeued data: " << data << endl;
             } catch (const out_of_range &e) {
                 cerr << e.what() << endl;
@@ -50,8 +50,8 @@ int main(void) {
             }
             break;
         case PRINT:
-            cout << "Printing stack:" << endl;
-            stack.print();
+            cout << "Printing set:" << endl;
+            set.print();
             break;
         case QUIT:
             quit = true;

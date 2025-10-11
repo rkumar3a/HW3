@@ -12,12 +12,12 @@
 #include <stdexcept>
 #include <string>
 #include <string.h>
-#include "stack.h"
+#include "set.h"
 
 namespace csen79 {
 
     // assignment
-    Stack &Stack::operator=(const Stack &rhs) {
+    Set &Set::operator=(const Set &rhs) {
         memcpy(data, rhs.data, DATASIZE);
         first = rhs.first;
         count = rhs.count;
@@ -25,23 +25,23 @@ namespace csen79 {
     }
 
     // move constructor
-    Stack::Stack(Stack &&rhs) {
+    Set::Set(Set &&rhs) {
         operator=(rhs);
     }    
 
     // copy constructor
-    Stack::Stack(const Stack &rhs) {
+    Set::Set(const Set &rhs) {
         operator=(rhs);
     }    
 
     // move
-    Stack &Stack::operator=(Stack &&rhs) {
+    Set &Set::operator=(Set &&rhs) {
         return operator=(rhs);
     }
 
 
     //Add data to end of Q
-    void Stack::enQ(const Data &element) {
+    void Set::enQ(const Data &element) {
         //Check if adding doesn't surpass limits
         if (count >= DATASIZE){
             throw std::out_of_range("The Queue is Full. DeQ Items to Add More.");
@@ -54,7 +54,7 @@ namespace csen79 {
         count++;
     };
     //Remove data from end of Q
-    Stack::Data Stack::deQ() {
+    Set::Data Set::deQ() {
         if (count == 0)
             throw std::out_of_range(std::string("queue underflow"));
         Data value = data[first];
@@ -63,7 +63,7 @@ namespace csen79 {
         return value;
     };
     //Prints the data to cout
-    void Stack::print() const {
+    void Set::print() const {
         for (int i = 0; i < count; i++) {
             std::cout << data[(first + i) % DATASIZE] << " ";
         }
