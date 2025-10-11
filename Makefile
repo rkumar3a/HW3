@@ -7,19 +7,22 @@ CXXFLAGS=$(OPT) $(STD)
 %.o:	%.cxx
 	$(CXX) -c $(CXXFLAGS) $<
 
-SRCS=bag.cxx bagtest.cxx
+SRCS=bag.cxx bagtest.cxx stack.cxx stacktest.cxx
 OBJS=$(SRCS:.cxx=.o)
 
-all: bag test
+all: bag test stack
 
-bag:	$(OBJS)
+bag: bag.o bagtest.o
+	$(CXX) -o $@ $(CXXFLAGS) $+
+
+stack: stack.o stacktest.o
 	$(CXX) -o $@ $(CXXFLAGS) $+
 
 test: testgen.cxx
 	$(CXX) -o $@ $(CXXFLAGS) $+
 
 clean:
-	/bin/rm bag test $(OBJS)
+	/bin/rm bag test stack $(OBJS)
 	/bin/rm -rf $(ALL:=.dSYM)
 
 depend: $(SRCS)
@@ -32,3 +35,5 @@ depend: $(SRCS)
 # DEPENDENTS
 bag.o: bag.cxx bag.h
 bagtest.o: bagtest.cxx bag.h
+stack.o: stack.cxx stack.h
+stacktest.o: stacktest.cxx stack.h
