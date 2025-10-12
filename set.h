@@ -24,7 +24,7 @@ public:
 
     // access functions
     void insert(const Data &);
-    Data deQ();
+    int size();
     void print() const;
 
 private:

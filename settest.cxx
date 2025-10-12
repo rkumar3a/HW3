@@ -15,7 +15,7 @@
 
 using namespace std;
 using namespace csen79;
-enum Command { PUSH = 'P', POP = 'O', PRINT = 'D', QUIT = 'Q' };
+enum Command { INSERT = 'I', SIZE = 'S', PRINT = 'P', QUIT = 'Q' };
 
 int main(void) {
     Set set;
@@ -24,7 +24,7 @@ int main(void) {
     int data;
     while (!quit && std::getline(cin,line)) {
         switch (line[0]) {
-        case PUSH:
+        case INSERT:
             try {
                 stringstream ss(line.substr(1));
                 ss >> data;
@@ -33,16 +33,16 @@ int main(void) {
                 continue;
             }
             try {
-                set.enQ(data);
+                // set.enQ(data);
                 cout << "Enqueued data: " << data << endl;
             } catch (const out_of_range &e) {
                 cerr << e.what() << endl;
                 continue;
             }
             break;
-        case POP:
+        case SIZE:
             try {
-                data = set.deQ();
+                // data = set.deQ();
                 cout << "Dequeued data: " << data << endl;
             } catch (const out_of_range &e) {
                 cerr << e.what() << endl;

@@ -63,15 +63,8 @@ namespace csen79 {
 
         data[count++] = element; //Insert data and increment
     };
-    //Remove data from end of Q
-    Set::Data Set::deQ() {
-        if (count == 0)
-            throw std::out_of_range(std::string("queue underflow"));
-        Data value = data[0];
-        // first = (first+1)%DATASIZE;
-        count--;
-        return value;
-    };
+    //Return the number of elements in the set
+    int Set::size() {return 0;};
     //Prints the data to cout
     void Set::print() const {
         for (int i = 0; i < count; i++) {
