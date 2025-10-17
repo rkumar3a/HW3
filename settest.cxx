@@ -29,12 +29,11 @@ int main(void) {
                 stringstream ss(line.substr(1));
                 ss >> data;
             } catch (const out_of_range &e) {
-                cerr << "Data out of range" << endl;
+                cerr << "Data Out of Range" << endl;
                 continue;
             }
             try {
-                // set.enQ(data);
-                cout << "Enqueued data: " << data << endl;
+                cout << "Inserted Data: " << data << endl;
             } catch (const out_of_range &e) {
                 cerr << e.what() << endl;
                 continue;
@@ -42,22 +41,18 @@ int main(void) {
             break;
         case SIZE:
             try {
-                // data = set.deQ();
-                cout << "Dequeued data: " << data << endl;
-            } catch (const out_of_range &e) {
-                cerr << e.what() << endl;
-                continue;
+                cout << "Current Size: " << count << endl;
             }
             break;
         case PRINT:
-            cout << "Printing set:" << endl;
+            cout << "Printing Set:" << endl;
             set.print();
             break;
         case QUIT:
             quit = true;
             break;
         default:
-            cerr << "Unknown command: " << line << endl;
+            cerr << "Unknown Command: " << line << endl;
             break;
         }
     }
